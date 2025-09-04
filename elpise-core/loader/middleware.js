@@ -16,10 +16,33 @@ const { sep } = path;
  */
 module.exports = (app) => {
   //读取app/middleware目录下的所有文件
-  const middlewarePath = path.resolve(app.businessPath, `.${sep}middleware`);
-  console.log("middlewarePath", middlewarePath);
+  const middlewarePath = path.resolve(app.businessPath, `.${sep}middlewares`);
   const fileList = glob.sync(
     path.resolve(middlewarePath, `.${sep}**${sep}**.js`)
   );
-  console.log("middlewarePath", fileList);
+  const middlewares = {};
+  fileList.forEach((file) => {
+    //获取文件的绝对路径
+    let name = path.resolve(file);
+    //截取middleware的目录名称
+    name = name.substring(
+      name.lastIndexOf(`middlewares${sep}`) + `middlewares${sep}`.length,
+      name.lastIndexOf(".")
+    );
+    name = name.replace(/[_-][a-z]/gi, (s) => s.substring(1).toUpperCase());
+    //挂在middleware到app对象中
+    let tempMiddleware = middlewares;
+    const names = name.split(sep);
+    for (let i = 0; (len = i < names.length); i++) {
+      if (i === len - 1) {
+        tempMiddleware[names[i]] = require(path.resolve(file))(app);
+      } else {
+        if (!tempMiddleware[names[i]]) {
+          tempMiddleware[names[i]] = {};
+        }
+        tempMiddleware = tempMiddleware[names[i]];
+      }
+    }
+  });
+  app.middlewares = middlewares;
 };

@@ -38,13 +38,14 @@ module.exports = {
     //加载中间件
     middlewareLoader(app);
     console.log(`--start-load: middlewareLoader done--`);
-    
+
     //加载service
     serviceLoader(app);
     console.log(`--start-load: serviceLoader done--`);
 
     //加载routerSchema
     routerSchemaLoader(app);
+    console.log(app.routerSchema, "999");
     console.log(`--start-load: routerSchemaLoader done--`);
 
     //加载router
@@ -57,7 +58,7 @@ module.exports = {
 
     //加载controller
     controllerLoader(app);
-    console.log(`--start-load: controllerLoader done--`);    
+    console.log(`--start-load: controllerLoader done--`);
 
     try {
       const port = process.env.PORT || 8080;
