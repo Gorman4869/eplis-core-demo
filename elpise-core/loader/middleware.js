@@ -33,7 +33,7 @@ module.exports = (app) => {
     //挂在middleware到app对象中
     let tempMiddleware = middlewares;
     const names = name.split(sep);
-    for (let i = 0; (len = i < names.length); i++) {
+    for (let i = 0, len = names.length; i < len; ++i) {
       if (i === len - 1) {
         tempMiddleware[names[i]] = require(path.resolve(file))(app);
       } else {

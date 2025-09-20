@@ -39,26 +39,33 @@ module.exports = {
     middlewareLoader(app);
     console.log(`--start-load: middlewareLoader done--`);
 
+    //加载routerSchema
+    routerSchemaLoader(app);
+    console.log(`--start-load: routerSchemaLoader done--`);
+
+    //加载controller
+    controllerLoader(app);
+    console.log(`--start-load: controllerLoader done--`);
+
     //加载service
     serviceLoader(app);
     console.log(`--start-load: serviceLoader done--`);
-
-    //加载routerSchema
-    routerSchemaLoader(app);
-    console.log(app.routerSchema, "999");
-    console.log(`--start-load: routerSchemaLoader done--`);
-
-    //加载router
-    routerLoader(app);
-    console.log(`--start-load: routerLoader done--`);
 
     //加载extend
     extendLoader(app);
     console.log(`--start-load: extendLoader done--`);
 
-    //加载controller
-    controllerLoader(app);
-    console.log(`--start-load: controllerLoader done--`);
+    //注册全局中间件
+    try {
+      require(`${app.businessPath}${sep}middleware.js`)(app);
+      console.log(`--start-load: global middleware done--`);
+    } catch (error) {
+      console.log("[exception]  global middleware error");
+    }
+
+    //加载router
+    routerLoader(app);
+    console.log(`--start-load: routerLoader done--`);
 
     try {
       const port = process.env.PORT || 8080;
