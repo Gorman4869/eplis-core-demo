@@ -45,7 +45,6 @@ module.exports = (app) => {
         tempController = tempController[names[i]];
       }
     }
-    console.log("controller", tempController);
   });
   app.controller = controller;
 };
