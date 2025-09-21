@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint --quiet --ext .js,.vue .",
-    "dev": "nodemon index.js"
+    "dev": "cross-env _ENV=local nodemon index.js",
+    "beta": "cross-env _ENV=beta nodemon index.js",
+    "production": "cross-env _ENV=production nodemon index.js"
   },
   "author": "",
   "license": "ISC",
@@ -49,6 +51,7 @@
     "babel-loader": "^8.0.4",
     "clean-webpack-plugin": "^0.1.19",
     "consoler": "^0.2.0",
+    "cross-env": "^10.0.0",
     "css-loader": "^0.23.1",
     "css-minimizer-webpack-plugin": "^5.0.1",
     "directory-named-webpack-plugin": "^4.0.1",

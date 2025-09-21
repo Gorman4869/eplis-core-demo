@@ -39,4 +39,5 @@ module.exports = (app) => {
 
   //覆盖并加载配置文件
   app.config = Object.assign({}, defaultConfig, envConfig);
+  console.log(app.config, "app.config");
 };
