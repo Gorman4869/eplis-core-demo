@@ -18,7 +18,7 @@ module.exports = (app) => {
   //读取app/middleware目录下的所有文件
   const middlewarePath = path.resolve(app.businessPath, `.${sep}middlewares`);
   const fileList = glob.sync(
-    path.resolve(middlewarePath, `.${sep}**${sep}**.js`)
+    path.resolve(middlewarePath, `.${sep}**${sep}**.js`),
   );
   const middlewares = {};
   fileList.forEach((file) => {
@@ -27,7 +27,7 @@ module.exports = (app) => {
     //截取middleware的目录名称
     name = name.substring(
       name.lastIndexOf(`middlewares${sep}`) + `middlewares${sep}`.length,
-      name.lastIndexOf(".")
+      name.lastIndexOf("."),
     );
     name = name.replace(/[_-][a-z]/gi, (s) => s.substring(1).toUpperCase());
     //挂在middleware到app对象中
@@ -44,5 +44,6 @@ module.exports = (app) => {
       }
     }
   });
+  // console.log(middlewares, "middleware loaded");
   app.middlewares = middlewares;
 };

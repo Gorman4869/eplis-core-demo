@@ -1,6 +1,6 @@
 const path = require("path");
 module.exports = (app) => {
-  //配置静态目录
+  //配置静态根目录
   const koaStatic = require("koa-static");
   app.use(koaStatic(path.resolve(process.cwd(), "./app/public")));
 
@@ -14,7 +14,7 @@ module.exports = (app) => {
         trimBlocks: true,
         noCache: true,
       },
-    })
+    }),
   );
 
   //引入 ctx.body 解析中间件
@@ -23,6 +23,9 @@ module.exports = (app) => {
     bodyParser({
       enableTypes: ["json", "form", "text"],
       formLimit: "1000mb",
-    })
+    }),
   );
+
+  //错误处理中间件
+  app.use(app.middlewares.errorHandler);
 };

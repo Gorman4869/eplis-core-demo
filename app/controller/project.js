@@ -5,8 +5,8 @@ module.exports = (app) => {
      * @param {object} ctx
      */
     async getList(ctx) {
-      console.log(this);
       const { project: projectService } = app.service;
+
       const projectList = await projectService.getList();
       this.success(ctx, projectList);
     }

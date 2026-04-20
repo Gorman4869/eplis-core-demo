@@ -68,7 +68,7 @@ module.exports = {
     console.log(`--start-load: routerLoader done--`);
 
     try {
-      const port = process.env.PORT || 8080;
+      const port = process.env.PORT || 8000;
       const host = process.env.HOST || "0.0.0.0";
       app.listen(port, host);
       console.log(`Server running on http://${host}:${port}`);

@@ -32,7 +32,7 @@ module.exports = (app) =>
      * @param {string} message 错误信息
      * @param {number} code 错误编码
      */
-    success(ctx, message, code) {
+    fail(ctx, message, code) {
       ctx.body = {
         success: false,
         message,

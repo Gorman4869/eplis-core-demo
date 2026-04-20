@@ -8,14 +8,12 @@ const { sep } = path;
 module.exports = (app) => {
   //获取config目录
   const configPath = path.resolve(app.baseDir, `.${sep}config`);
-
   //获取默认配置文件
   let defaultConfig = {};
   try {
-    defaultConfig = require(path.resolve(
-      configPath,
-      `.${sep}config.default.js`
-    ));
+    defaultConfig = require(
+      path.resolve(configPath, `.${sep}config.default.js`),
+    );
   } catch (e) {
     console.log("[exception] there is no config.default file");
   }
@@ -28,10 +26,9 @@ module.exports = (app) => {
     } else if (app.env.isBeta()) {
       envConfig = require(path.resolve(configPath, `.${sep}config.beta.js`));
     } else if (app.env.isProduction()) {
-      envConfig = require(path.resolve(
-        configPath,
-        `.${sep}config.production.js`
-      ));
+      envConfig = require(
+        path.resolve(configPath, `.${sep}config.production.js`),
+      );
     }
   } catch (e) {
     console.log("[exception] there is no env.config file");

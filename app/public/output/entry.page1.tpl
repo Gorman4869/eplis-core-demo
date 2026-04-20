@@ -3,6 +3,7 @@
     <head>
         <title>{{name}}</title>
         <link rel="stylesheet" href="/static/normalize.css">
+        <link href="/static/favicon.ico" rel="icon" type="image/x-icon">"
     </head>
     <body>
         <h1>Page 1</h1>
