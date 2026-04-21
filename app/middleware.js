@@ -28,4 +28,7 @@ module.exports = (app) => {
 
   //错误处理中间件
   app.use(app.middlewares.errorHandler);
+
+  //校验签名中间件
+  app.use(app.middlewares.apiSignVerify);
 };
