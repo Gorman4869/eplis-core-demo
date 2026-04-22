@@ -15,10 +15,10 @@ const { sep } = path;
 module.exports = (app) => {
   const routerSchemaPath = path.resolve(
     app.businessPath,
-    `.${sep}router-schema`
+    `.${sep}router-schema`,
   );
   const fileList = glob.sync(
-    path.resolve(routerSchemaPath, `.${sep}**${sep}**.js`)
+    path.resolve(routerSchemaPath, `.${sep}**${sep}**.js`),
   );
   let routerSchema = {};
   fileList.forEach((file) => {
