@@ -9,7 +9,8 @@
 </template>
 <script setup>
 import { ref } from "vue";
-
+import utils from "$common/utils.js";
+console.log(utils);
 const content = ref("hello world");
 </script>
 <style scoped lang="less">

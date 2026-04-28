@@ -7,7 +7,9 @@
     "lint": "eslint --quiet --ext .js,.vue .",
     "dev": "cross-env _ENV=local nodemon index.js",
     "beta": "cross-env _ENV=beta nodemon index.js",
-    "production": "cross-env _ENV=production nodemon index.js"
+    "production": "cross-env _ENV=production nodemon index.js",
+    "build:dev": "cross-env --max-old-space-size=4096 _ENV=local node ./app/webpack/dev.js",
+    "build:prod": "cross-env _ENV=production node ./app/webpack/prod.js"
   },
   "author": "",
   "license": "ISC",
@@ -71,6 +73,7 @@
     "style-loader": "^0.14.1",
     "supertest": "^4.0.2",
     "terser-webpack-plugin": "^2.3.5",
+    "thread-loader": "^4.0.4",
     "url-loader": "^4.1.1",
     "validate-commit-msg": "~2.14.0",
     "vue-loader": "^17.2.2",
